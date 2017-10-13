@@ -19,7 +19,16 @@ export const sequence = (formatter = (x) => x) => {
     count += 1;
     return formatter(count);
   };
-  fn.__isSequence = true;
+  fn.__isCallable = true;
+  return fn;
+};
+
+export const random = (list) => {
+  const fn = () => {
+    if (isArray(list)) { return list[Math.floor(Math.random()) % list.length]; }
+    return Math.random();
+  };
+  fn.__isCallable = true;
   return fn;
 };
 
@@ -29,7 +38,7 @@ const removeTraitsFromDefinition = (definition) => {
       return result;
     }
 
-    if (isSequence(definition[key])) {
+    if (isCallable(definition[key])) {
       return addToObject(result, key, definition[key]());
     }
 
@@ -42,6 +51,9 @@ const addToObject = (object, key, value) => {
   return object;
 };
 
+const isArray = (probablyArray) =>
+  Array.isArray(probablyArray);
+
 const isString = (probablyString) =>
   typeof probablyString === 'string';
 
@@ -51,6 +63,6 @@ const isFunction = (probablyFunction) =>
 const isTrait = (probablyTrait) =>
   isFunction(probablyTrait) && probablyTrait.__isTrait;
 
-const isSequence = (probablySequence) =>
-  isFunction(probablySequence) && probablySequence.__isSequence;
+const isCallable = (probablySequence) =>
+  isFunction(probablySequence) && probablySequence.__isCallable;
 

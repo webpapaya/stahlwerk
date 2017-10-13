@@ -1,5 +1,5 @@
-import { assertThat, hasProperties, not, hasProperty, throws } from 'hamjest';
-import { factory, trait, sequence } from './index';
+import { assertThat, hasProperties, not, hasProperty, throws, number, hasItem } from 'hamjest';
+import { factory, trait, sequence, random } from './index';
 
 const createUser = factory({
   id: 1,
@@ -45,6 +45,19 @@ describe('create', () => {
       const createCompany = factory({ name: sequence((number) => `name${number}`) });
       assertThat(createCompany(), hasProperties({ name: 'name1' }));
       assertThat(createCompany(), hasProperties({ name: 'name2' }));
+    });
+  });
+
+  describe('random', () => {
+    it('responds a random number', () => {
+      const createCompany = factory({ id: random() });
+      assertThat(createCompany(), hasProperty('id', number()));
+    });
+
+    it('responds one element of the given list', () => {
+      const list = ['first', 'second', 'third'];
+      const createCompany = factory({ id: random(list) });
+      assertThat(list, hasItem(createCompany().id));
     });
   });
 });
