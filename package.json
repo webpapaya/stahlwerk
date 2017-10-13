@@ -1,0 +1,11 @@
+{
+  "name": "stahlwerk",
+  "version": "0.0.0",
+  "description": "A factory library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Mayrhofer",
+  "license": "ISC"
+}
