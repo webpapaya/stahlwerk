@@ -2,7 +2,7 @@
   "name": "stahlwerk",
   "version": "0.0.0",
   "description": "A factory library.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "mocha src/{*,**/*,**/**/*,**/**/**/*}.spec.js --recursive --require babel-register --reporter spec",
