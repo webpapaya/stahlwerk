@@ -1,29 +1,5 @@
 import { assertThat, hasProperties, not, hasProperty } from 'hamjest';
-
-const factory = (definition) => (...args) => {
-  const definitionWithoutTraits = Object.keys(definition).reduce((result, key) => {
-    if (isTrait(definition[key])) { return result; }
-    result[key] = definition[key];
-    return result;
-  }, {});
-
-  return args.reduce((result, arg) => Object.assign(
-    result,
-    isFunction(definition[arg]) ? definition[arg]() : arg,
-  ), definitionWithoutTraits);
-};
-
-const isFunction = (probablyFunction) =>
-  typeof probablyFunction === 'function';
-
-const isTrait = (probablyTrait) =>
-  isFunction(probablyTrait) && probablyTrait.__isTrait;
-
-const trait = (definition) => {
-  const fn = () => definition;
-  fn.__isTrait = true;
-  return fn;
-};
+import { factory, trait } from './index';
 
 const createUser = factory({
   id: 1,
