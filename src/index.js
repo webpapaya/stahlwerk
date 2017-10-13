@@ -3,7 +3,7 @@ export const factory = (definition) => (...args) => {
 
   return args.reduce((result, arg) => {
     if (isString(arg) && !isTrait(definition[arg])) { throw new Error('Unknown trait'); }
-    return Object.assign(result, isFunction(definition[arg]) ? definition[arg]() : arg)
+    return Object.assign(result, isFunction(definition[arg]) ? definition[arg]() : arg);
   }, definitionWithoutTraits);
 };
 
@@ -15,7 +15,10 @@ export const trait = (definition) => {
 
 export const sequence = () => {
   let count = 0;
-  const fn = () => count += 1;
+  const fn = () => {
+    count += 1;
+    return count;
+  };
   fn.__isSequence = true;
   return fn;
 };
@@ -35,7 +38,7 @@ const removeTraitsFromDefinition = (definition) => {
 };
 
 const addToObject = (object, key, value) => {
-  object[key] = value;
+  object[key] = value; // eslint-disable-line no-param-reassign
   return object;
 };
 

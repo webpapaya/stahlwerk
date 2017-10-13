@@ -41,7 +41,5 @@ describe('create', () => {
       assertThat(createCompany(), hasProperties({ id: 2 }));
     });
   });
-
 });
-
 

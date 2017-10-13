@@ -4,7 +4,7 @@
   "description": "A factory library.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint-crewmeister src",
+    "lint": "eslint .",
     "test": "mocha src/{*,**/*,**/**/*,**/**/**/*}.spec.js --recursive --require babel-register --reporter spec",
     "prepublish": "babel src/ --out-dir lib/ --ignore *.spec.js"
   },
