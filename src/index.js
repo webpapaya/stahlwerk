@@ -1,6 +1,10 @@
 export const factory = (definition) => (...args) => {
   const definitionWithoutTraits = Object.keys(definition).reduce((result, key) => {
     if (isTrait(definition[key])) { return result; }
+    if (isSequence(definition[key])) {
+      result[key] = definition[key]();
+      return result;
+    }
     result[key] = definition[key];
     return result;
   }, {});
@@ -17,9 +21,19 @@ export const trait = (definition) => {
   return fn;
 };
 
+export const sequence = () => {
+  let count = 0;
+  const fn = () => count += 1;
+  fn.__isSequence = true;
+  return fn;
+};
+
 const isFunction = (probablyFunction) =>
   typeof probablyFunction === 'function';
 
 const isTrait = (probablyTrait) =>
   isFunction(probablyTrait) && probablyTrait.__isTrait;
+
+const isSequence = (probablySequence) =>
+  isFunction(probablySequence) && probablySequence.__isSequence;
 

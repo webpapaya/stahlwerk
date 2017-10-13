@@ -1,5 +1,5 @@
 import { assertThat, hasProperties, not, hasProperty } from 'hamjest';
-import { factory, trait } from './index';
+import { factory, trait, sequence } from './index';
 
 const createUser = factory({
   id: 1,
@@ -18,15 +18,26 @@ describe('create', () => {
     assertThat(createUser(), not(hasProperty('isDisabled')));
   });
 
-  it('trait are added correctly', () => {
-    assertThat(createUser('isDisabled'),
-      hasProperties({ id: 1, name: 'Peter', disabledAt: '2000-01-01' }));
-  });
-
   it('additional properties can be added', () => {
     assertThat(createUser({ additional: 'property' }),
       hasProperties({ additional: 'property' }));
   });
+
+  describe('trait', () => {
+    it('are added correctly', () => {
+      assertThat(createUser('isDisabled'),
+        hasProperties({ id: 1, name: 'Peter', disabledAt: '2000-01-01' }));
+    });
+  });
+
+  describe('sequence', () => {
+    it('starts at 1 and the second id is 2', () => {
+      const createCompany = factory({ id: sequence() });
+      assertThat(createCompany(), hasProperties({ id: 1 }));
+      assertThat(createCompany(), hasProperties({ id: 2 }));
+    });
+  });
+
 });
 
 
