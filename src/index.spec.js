@@ -7,6 +7,9 @@ const createUser = factory({
   isDisabled: trait({
     disabledAt: '2000-01-01',
   }),
+  knowsGerman: trait({
+    language: 'de',
+  }),
 });
 
 describe('create', () => {
@@ -25,8 +28,8 @@ describe('create', () => {
 
   describe('trait', () => {
     it('are added correctly', () => {
-      assertThat(createUser('isDisabled'),
-        hasProperties({ id: 1, name: 'Peter', disabledAt: '2000-01-01' }));
+      assertThat(createUser('isDisabled', 'knowsGerman'),
+        hasProperties({ id: 1, name: 'Peter', disabledAt: '2000-01-01', language: 'de' }));
     });
 
     it('throws error on unknown trait', () => {
