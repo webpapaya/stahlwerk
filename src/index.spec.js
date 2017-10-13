@@ -1,4 +1,4 @@
-import { assertThat, hasProperties, not, hasProperty } from 'hamjest';
+import { assertThat, hasProperties, not, hasProperty, throws } from 'hamjest';
 import { factory, trait, sequence } from './index';
 
 const createUser = factory({
@@ -27,6 +27,10 @@ describe('create', () => {
     it('are added correctly', () => {
       assertThat(createUser('isDisabled'),
         hasProperties({ id: 1, name: 'Peter', disabledAt: '2000-01-01' }));
+    });
+
+    it('throws error on unknown trait', () => {
+      assertThat(() => createUser('isDisableddd'), throws());
     });
   });
 
