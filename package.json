@@ -4,8 +4,20 @@
   "description": "A factory library.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint-crewmeister src",
+    "test": "mocha src/{*,**/*,**/**/*,**/**/**/*}.spec.js --recursive --require babel-register --reporter spec",
+    "prepublish": "babel src/ --out-dir lib/ --ignore *.spec.js"
   },
   "author": "Thomas Mayrhofer",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "eslint-config-crewmeister": "latest",
+    "hamjest": "^3.1.0",
+    "hamjest-spy": "^4.0.0",
+    "mocha": "^4.0.1"
+  }
 }
