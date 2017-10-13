@@ -40,6 +40,12 @@ describe('create', () => {
       assertThat(createCompany(), hasProperties({ id: 1 }));
       assertThat(createCompany(), hasProperties({ id: 2 }));
     });
+
+    it('accepts a formatter as argument', () => {
+      const createCompany = factory({ name: sequence((number) => `name${number}`) });
+      assertThat(createCompany(), hasProperties({ name: 'name1' }));
+      assertThat(createCompany(), hasProperties({ name: 'name2' }));
+    });
   });
 });
 

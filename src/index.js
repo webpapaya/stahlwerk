@@ -13,11 +13,11 @@ export const trait = (definition) => {
   return fn;
 };
 
-export const sequence = () => {
+export const sequence = (formatter = (x) => x) => {
   let count = 0;
   const fn = () => {
     count += 1;
-    return count;
+    return formatter(count);
   };
   fn.__isSequence = true;
   return fn;
