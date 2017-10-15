@@ -10,6 +10,10 @@
   },
   "author": "Thomas Mayrhofer",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webPapaya/stahlwerk.git"
+  },
   "keywords": [
     "TDD",
     "BDD",
