@@ -1,0 +1,13 @@
+language: node_js
+script:
+- npm run lint && npm run test
+node_js:
+- node
+deploy:
+  provider: npm
+  email: thomas@mayrhofer.at
+  api_key:
+    secure: dhgMyulDyarT++YYN3PNisJgrzqo9KPFeXpnppK/pG/Vjf5/e1WkHge/Xw4dT+7gbKMpisFYxqgF7HJRsoetVrRJFFBVcnMNLBbTPVXrXDp/7BbNZXp8Q8Evi8vWaLagLRiZNZIvfeHoPHbE+X+5lY8nynipltKrwkec5i85ulP4HxGEvoSLf4E+to3KTrLNU+dVot/v8xbR63WMof56d3/smd0kw4qd1TmuNpd0yyy+z0Eqc4fC4v9zndmYvaRPYKHLxC2UPbCV2kRW9ZEAq8Z/UB12kp3latHkb4OOpDkaS+Z5mlIelYawbNd33vPz/r065f2mcWO3YIzrHTuWkil5UHnq20ywbhOb65PrbJxWq8sWwg9agYysfZ6S3y1xK4lKdkPNMK5kLR4lpZGvVlRvCgxy58fllXVEmIpet86Y3U1dq9Pm8NHPcUFOkoZGVxzsg6E17+4wWPHdhB4vLfuvRzVlTCmeFD1qpkPNDYt8+QQMwhz2COpG0AMuNTMQTg8DGim1XSyULVG4ezKjubrRZv7WaXLaGhUfQzx/pAZFzuZmidTAtJpdQDJNLXAyOtViyFAhvB6587BfAKTqiTaZf5wR2n9ATDg6DO25Hkxt/rtGOvMKCvq7O+tlEP1xaafQzbWJrH5KFgIQJj5L/0mBgrmA4GQoK0mInUualDE=
+  on:
+    tags: true
+    repo: webpapaya/stahlwerk
