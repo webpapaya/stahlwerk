@@ -64,8 +64,15 @@ describe('create', () => {
     });
 
     it('responds result of function when given', () => {
-      const createCompany = factory({ id: random(() => 'test') });
+      let rand = void 0;
+      const createCompany = factory({
+        id: random((i) => {
+          rand = i;
+          return 'test';
+        }),
+      });
       assertThat(createCompany(), hasProperty('id', 'test'));
+      assertThat(rand, number());
     });
   });
 });
