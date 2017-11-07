@@ -23,9 +23,10 @@ export const sequence = (formatter = (x) => x) => {
   return fn;
 };
 
-export const random = (list) => {
+export const random = (arg) => {
   const fn = () => {
-    if (isArray(list)) { return list[Math.floor(Math.random()) % list.length]; }
+    if (isArray(arg)) { return arg[Math.floor(Math.random()) % arg.length]; }
+    if (isFunction(arg)) { return arg(Math.random()); }
     return Math.random();
   };
   fn.__isCallable = true;

@@ -62,6 +62,11 @@ describe('create', () => {
       const createCompany = factory({ id: random(list) });
       assertThat(list, hasItem(createCompany().id));
     });
+
+    it('responds result of function when given', () => {
+      const createCompany = factory({ id: random(() => 'test') });
+      assertThat(createCompany(), hasProperty('id', 'test'));
+    });
   });
 });
 
