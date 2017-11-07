@@ -14,6 +14,8 @@ const createUser = factory({
     'Maria',
     'Charles',
   ]), // choses one of the given list
+  duration: random((rand) => rand), // responds a random value
+  dynamicValue: execute(() => Math.random()), // executes given function on every create
   disabledAt: undefined,
   isDisabled: trait({
     disabledAt: '2000-01-01',

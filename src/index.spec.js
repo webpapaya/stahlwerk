@@ -1,5 +1,5 @@
 import { assertThat, hasProperties, not, hasProperty, throws, number, hasItem } from 'hamjest';
-import { factory, trait, sequence, random } from './index';
+import { factory, trait, sequence, random, execute } from './index';
 
 const createUser = factory({
   id: 1,
@@ -73,6 +73,17 @@ describe('create', () => {
       });
       assertThat(createCompany(), hasProperty('id', 'test'));
       assertThat(rand, number());
+    });
+  });
+
+  describe('execute', () => {
+    it('executes given function', () => {
+      const createCompany = factory({ id: execute(() => 'execute') });
+      assertThat(createCompany(), hasProperty('id', 'execute'));
+    });
+
+    it('throws an error when something different than a function given', () => {
+      assertThat(() => factory({ id: execute('execute') }), throws());
     });
   });
 });

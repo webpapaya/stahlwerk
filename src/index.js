@@ -33,6 +33,13 @@ export const random = (arg) => {
   return fn;
 };
 
+export const execute = (callback) => {
+  if (!isFunction(callback)) { throw new Error('a function must be passed to execute'); }
+  const fn = () => callback();
+  fn.__isCallable = true;
+  return fn;
+};
+
 const removeTraitsFromDefinition = (definition) => {
   return Object.keys(definition).reduce((result, key) => {
     if (isTrait(definition[key])) {
